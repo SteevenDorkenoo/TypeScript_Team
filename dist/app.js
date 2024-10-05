@@ -1,6 +1,7 @@
+"use strict";
 function generatorPasswords(options) {
-    var charset = "";
-    var password = "";
+    let charset = "";
+    let password = "";
     if (options.useUpperCase)
         charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     if (options.useLowerCase)
@@ -11,27 +12,52 @@ function generatorPasswords(options) {
         charset += "!@#$%^&*()_+[]{}|;:,.<>?";
     if (charset === "")
         charset = "abcdefghijklmnopqrstuvwxyz";
-    for (var i = 0; i < options.length; i++) {
-        var randomIndex = Math.floor(Math.random() * charset.length);
+    for (let i = 0; i < options.length; i++) {
+        let randomIndex = Math.floor(Math.random() * charset.length);
         password += charset[randomIndex];
     }
     return password;
 }
 function handlePasswordGeneration(event) {
     event.preventDefault();
-    var selectedRadio = document.querySelector('input[name="longueurPassword"]:checked');
-    var longueurPassword = selectedRadio ? parseInt(selectedRadio.value) : null;
-    var input = document.querySelector('#myPass');
+    const selectedRadio = document.querySelector('input[name="longueurPassword"]:checked');
+    const longueurPassword = selectedRadio ? parseInt(selectedRadio.value) : null;
+    const input = document.querySelector('#myPass');
     if (longueurPassword) {
-        var passwordOptions = {
+        const passwordOptions = {
             length: longueurPassword,
             useUpperCase: true,
             useLowerCase: true,
             useNumber: true,
             useSymbol: true
         };
-        var generatedPassword = generatorPasswords(passwordOptions);
+        const generatedPassword = generatorPasswords(passwordOptions);
         console.log("Mot de passe généré : " + generatedPassword);
         input.value = generatedPassword;
     }
 }
+// Exercice 2
+function analyseText(text) {
+    const mots = text.split(/\s+/);
+    const nombreMots = mots.length;
+    const phrases = text.split(/[.!?]/);
+    const nombrePhrases = phrases.length;
+    const frequenceLettre = {};
+    for (let char of text) {
+        char = char.toLowerCase();
+        if (char >= 'a' && char <= 'z') {
+            if (frequenceLettre[char]) {
+                frequenceLettre[char] += 1;
+            }
+            else {
+                frequenceLettre[char] = 1;
+            }
+        }
+    }
+    console.log("Analyse du texte :");
+    console.log(`Nombre de mots : ${nombreMots}`);
+    console.log(`Nombre de phrases : ${nombrePhrases}`);
+    console.log("Fréquence des lettres :", frequenceLettre);
+}
+const text = "Ceci est un exemple de texte. Ce texte sert à analyser les mots et les phrases.";
+analyseText(text);

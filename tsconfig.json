@@ -1,9 +1,15 @@
-{
-    "compilerOptions": {
-        "outDir": "dist"
-    },
-    "files": [
-        "src/app.ts"
-    ]
 
+
+{
+"compilerOptions": {
+    "target": "es6",            // Version de JavaScript à cibler (ES6 dans ce cas)
+   // "module": "commonjs",        // Module à utiliser
+    "outDir": "dist",          // Dossier de sortie pour les fichiers JS compilés
+    "rootDir": "./src",          // Dossier source pour vos fichiers TS
+    "strict": true,              // Activer les vérifications strictes
+    "esModuleInterop": true      // Compatibilité avec les modules ES
+  },
+  "files": ["src/app.ts"],
+  "include": ["src/**/*.ts"],    // Fichiers à inclure dans la compilation
+  "exclude": ["node_modules"]    // Fichiers à exclure
 }

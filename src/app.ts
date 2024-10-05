@@ -52,3 +52,34 @@ function handlePasswordGeneration(event: Event):void{
 }
 
 
+
+// Exercice 2
+
+function analyseText(text: string): void {
+    const mots: string[] = text.split(/\s+/); 
+    const nombreMots: number = mots.length; 
+
+    const phrases: string[] = text.split(/[.!?]/);
+    const nombrePhrases: number = phrases.length;
+
+    const frequenceLettre: { [key: string]: number } = {};
+
+    for (let char of text) {
+        char = char.toLowerCase();
+        if (char >= 'a' && char <= 'z') {
+            if (frequenceLettre[char]) {
+                frequenceLettre[char] += 1;
+            } else {
+                frequenceLettre[char] = 1;
+            }
+        }
+    }
+
+    console.log("Analyse du texte :");
+    console.log(`Nombre de mots : ${nombreMots}`);
+    console.log(`Nombre de phrases : ${nombrePhrases}`);
+    console.log("Fréquence des lettres :", frequenceLettre);
+}
+
+const text: string = "Ceci est un exemple de texte. Ce texte sert à analyser les mots et les phrases.";
+analyseText(text);
