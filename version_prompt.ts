@@ -54,7 +54,7 @@ function etat() : void
     {
         for(let k = 0;k in attente; k++)
         {
-            console.log(attente[k].Nom + "\nPosition dans la file : " + Number(k)+1 +"\nNuméro client : " +  attente[k].n_ticket);
+            console.log(attente[k].Nom + "\nPosition dans la file : " + Number(k+1) +"\nNuméro client : " +  attente[k].n_ticket);
         }
     }
     return main();
